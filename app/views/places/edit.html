@@ -1,0 +1,56 @@
+<hr>
+
+<h2>{{data.place.title}}</h2>
+
+<button type="button" class="btn btn-primary" data-ng-click="onSavePlace()" data-ng-disabled="isSaving">Save</button>
+<a class="btn btn-default" data-ng-click="onCancelSavePlace()" data-ng-disabled="isSaving">Cancel</a>
+<br>
+<br>
+
+<p class="form-group">
+    <label>Title</label>
+    <input type="text" data-ng-model="data.place.title" class="form-control"/>
+</p>
+
+<p class="form-group">
+    <label>Address</label>
+    <input type="text" data-ng-model="data.place.address" class="form-control"/>
+    <button type="button" class="btn btn-default" data-ng-click="onSetMarkerPositionFromAddressClick()">Set marker position from address</button>
+</p>
+
+<p class="form-group">
+    <label>Latitude</label>
+    <input type="text" data-ng-model="data.place.latitude" class="form-control" data-ng-blur="onCoordinateBlur('latitude')"/>
+</p>  
+
+<p class="form-group">
+    <label>Longitude</label>
+    <input type="text" data-ng-model="data.place.longitude" class="form-control" data-ng-blur="onCoordinateBlur('longitude')"/>
+</p>   
+
+<p class="form-group">
+    <label>Category</label>
+<!--     <select class="form-control"
+            data-ng-options="category.title for category in categories"
+            data-ng-model="place.categories">
+        <option value="">[[lbl_choose]]</option>
+    </select> -->
+
+  <ui-select multiple ng-model="data.place.categories" theme="bootstrap">
+    <ui-select-match placeholder="Select categories...">{{$item.title}}</ui-select-match>
+    <ui-select-choices repeat="category in data.allCategories">
+        {{category.title}}
+      <!-- <div ng-bind-html="category.title | highlight: $select.search"></div> -->
+    </ui-select-choices>
+  </ui-select>
+
+
+</p>    
+
+<br>
+<br>
+
+<p class="form-group">
+    <button type="button" class="btn btn-primary" data-ng-click="onSavePlace()" data-ng-disabled="isSaving">Save</button>
+    <a class="btn btn-default" data-ng-click="onCancelSavePlace()" data-ng-disabled="isSaving">Cancel</a>
+</p>

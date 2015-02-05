@@ -1,0 +1,29 @@
+<hr>
+
+
+<div data-ng-if="isDeleted">
+    <h2>Deleted</h2>
+</div>
+
+<div data-ng-if="!isDeleted">
+
+    <h2>{{data.place.title}}</h2>
+
+    <a data-ui-sref="places.edit({id: data.place._id})" class="btn btn-default">Edit</a>
+    <button type="button" data-ng-click="onDeletePlace()" class="btn btn-danger">Delete</button>
+    <br>
+    <br>
+    <p>Address: {{data.place.address}}</p>
+    <p>Latitude: {{data.place.latitude}}</p>
+    <p>Longitude: {{data.place.longitude}}</p>
+
+    <p>Categories: 
+        <span class="ui-select-match-item btn btn-default btn-xs" 
+        data-ng-repeat="category in data.place.categories track by $index"
+
+        style="margin-right: 5px;">
+            {{category.title}}
+        </span>
+    </p>
+
+</div>

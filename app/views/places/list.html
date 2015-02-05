@@ -1,0 +1,62 @@
+
+<div class="site-map">
+
+
+    <data-ui-gmap-google-map center="data.map.center" zoom="data.map.zoom">
+
+        <ui-gmap-markers models="data.map.markers" 
+            coords="'coords'" 
+            icon="'icon'" 
+            click="'onClick'"
+            options="'options'"
+            events="data.map.events">
+
+        </ui-gmap-markers>     
+
+    </data-ui-gmap-google-map>
+
+</div>
+
+<div class="site-content">
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" data-ng-model="showAllPlacesInMapWhenInSinglePlace">
+            Show other places
+        </label>
+    </div>  
+
+    <hr>
+
+<!--     <div class="checkbox" data-ng-repeat="category in categories">
+        <label>
+            <input type="checkbox"  data-ng-model="category.isSelected" data-ng-change="onCategoriesFilterChange(category)">
+            {{category.title}}
+        </label>
+    </div>  
+ -->
+
+          <ui-select multiple ng-model="data.selectedCategories" theme="bootstrap" data-on-select="onCategoriesFilterChange()" data-on-remove="onCategoriesFilterChange()">
+            <ui-select-match placeholder="Select category filter...">{{$item.title}}</ui-select-match>
+            <ui-select-choices repeat="category in data.allCategories">
+                {{category.title}}
+            </ui-select-choices>
+          </ui-select>    
+
+    <hr>
+
+    <ul>
+        <li data-ng-repeat="place in data.activePlaces">
+            <a href="" data-ng-click="onShowPlace(place)">{{place.title}}</a>
+            <!-- <a data-ui-sref="placesView({id: place._id})">{{place.title}}</a> -->
+            <!-- <button type="button" class="btn btn-default" data-ng-click="onShowPlace(place)">Animate</button> -->
+            <!-- <div>{{place.address}}</div> -->
+        </li>
+    </ul>  
+
+    <a data-ui-sref="places.add" class="btn btn-default">Add new place</a>
+
+    <div data-ui-view=""></div>
+
+
+</div>
